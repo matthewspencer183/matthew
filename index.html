@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matthew Tôn Thất Bách</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #2d7d5a;
+  --green-light: #3a9e72;
+  --green-pale: #e8f5ef;
+  --green-mid: #c2e0d2;
+  --gold: #b5924c;
+  --navy: #1a2e24;
+  --text: #2c3e35;
+  --gray: #6b7d74;
+  --border: #dceee5;
+  --white: #ffffff;
+  --bg: #f9fcfb;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'Be Vietnam Pro', sans-serif; color:var(--text); background:var(--white); }
+
+/* NAV */
+nav {
+  position:fixed; top:0; width:100%; z-index:100;
+  background:rgba(255,255,255,0.97); backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  display:flex; justify-content:space-between; align-items:center;
+  padding:16px 64px;
+}
+.nav-logo { display:flex; flex-direction:column; line-height:1.2; }
+.nav-logo-en { font-size:1rem; font-weight:700; color:var(--green); letter-spacing:2px; }
+.nav-logo-vn { font-size:0.7rem; font-weight:400; color:var(--gray); letter-spacing:1.5px; }
+.nav-links { display:flex; gap:36px; list-style:none; }
+.nav-links a { color:var(--gray); text-decoration:none; font-size:0.82rem; font-weight:500; letter-spacing:1px; text-transform:uppercase; transition:color .3s; }
+.nav-links a:hover { color:var(--green); }
+.nav-cta { background:var(--green); color:white !important; padding:8px 20px; border-radius:4px; }
+.nav-cta:hover { background:var(--green-light) !important; color:white !important; }
+
+/* HERO */
+#hero {
+  min-height:100vh; padding:120px 64px 80px;
+  background: linear-gradient(150deg, #f0faf5 0%, #e4f4ec 40%, #f9fcfb 100%);
+  display:flex; align-items:center;
+  position:relative; overflow:hidden;
+}
+.hero-deco {
+  position:absolute; right:-80px; top:-80px;
+  width:500px; height:500px; border-radius:50%;
+  background:radial-gradient(circle, rgba(45,125,90,0.08) 0%, transparent 70%);
+  pointer-events:none;
+}
+.hero-deco2 {
+  position:absolute; left:30%; bottom:-100px;
+  width:350px; height:350px; border-radius:50%;
+  background:radial-gradient(circle, rgba(45,125,90,0.05) 0%, transparent 70%);
+  pointer-events:none;
+}
+.hero-inner { max-width:1100px; margin:0 auto; display:flex; align-items:center; gap:80px; }
+.hero-text { flex:1; }
+.hero-tag {
+  display:inline-flex; align-items:center; gap:8px;
+  background:var(--green-pale); border:1px solid var(--green-mid);
+  color:var(--green); font-size:0.72rem; font-weight:600; letter-spacing:2px;
+  text-transform:uppercase; padding:7px 16px; border-radius:20px; margin-bottom:28px;
+}
+.hero-tag::before { content:'◆'; font-size:0.5rem; }
+.hero-text h1 { font-family:'Playfair Display', serif; font-size:3.4rem; line-height:1.1; color:var(--navy); margin-bottom:6px; }
+.hero-text h1 em { font-style:italic; color:var(--green); }
+.hero-vn { font-size:0.9rem; font-weight:300; color:var(--gray); letter-spacing:3px; margin-bottom:24px; }
+.hero-tagline { font-size:1.05rem; color:var(--gray); line-height:1.85; max-width:500px; margin-bottom:16px; }
+.hero-tagline strong { color:var(--green); font-weight:600; }
+.hero-expertise { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:36px; }
+.tag-pill { background:white; border:1px solid var(--border); color:var(--gray); font-size:0.72rem; padding:5px 12px; border-radius:20px; font-weight:500; }
+.hero-btns { display:flex; gap:14px; flex-wrap:wrap; }
+.btn-primary { background:var(--green); color:white; padding:14px 30px; border:none; border-radius:4px; font-family:'Be Vietnam Pro',sans-serif; font-size:0.82rem; font-weight:600; letter-spacing:1px; text-transform:uppercase; cursor:pointer; text-decoration:none; transition:all .3s; }
+.btn-primary:hover { background:var(--green-light); transform:translateY(-2px); box-shadow:0 8px 24px rgba(45,125,90,0.25); }
+.btn-outline { background:transparent; color:var(--green); padding:14px 30px; border:1.5px solid var(--green); border-radius:4px; font-family:'Be Vietnam Pro',sans-serif; font-size:0.82rem; font-weight:600; letter-spacing:1px; text-transform:uppercase; cursor:pointer; text-decoration:none; transition:all .3s; }
+.btn-outline:hover { background:var(--green-pale); transform:translateY(-2px); }
+
+/* HERO PHOTO */
+.hero-photo { width:300px; height:380px; flex-shrink:0; border-radius:16px; overflow:hidden; position:relative; box-shadow:0 24px 64px rgba(45,125,90,0.18); border:4px solid white; }
+.hero-photo img { width:100%; height:100%; object-fit:cover; }
+.photo-placeholder { width:100%; height:100%; background:var(--green-pale); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; }
+.photo-placeholder .icon { font-size:2.5rem; opacity:.4; }
+.photo-placeholder p { color:var(--gray); font-size:0.75rem; text-align:center; line-height:1.7; }
+
+/* STATS */
+.stats-bar { background:var(--green); display:flex; justify-content:center; }
+.stat { text-align:center; padding:28px 56px; border-right:1px solid rgba(255,255,255,0.15); }
+.stat:last-child { border-right:none; }
+.stat-num { font-size:2rem; font-weight:800; color:white; }
+.stat-label { font-size:0.72rem; color:rgba(255,255,255,0.7); letter-spacing:1.5px; text-transform:uppercase; margin-top:4px; font-weight:500; }
+
+/* SECTION BASE */
+section { padding:90px 64px; }
+.sec-inner { max-width:1100px; margin:0 auto; }
+.sec-label { font-size:0.72rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--green); margin-bottom:10px; }
+.sec-title { font-family:'Playfair Display',serif; font-size:2.2rem; color:var(--navy); margin-bottom:14px; }
+.sec-div { width:48px; height:3px; background:var(--green); border-radius:2px; margin-bottom:48px; }
+
+/* ABOUT */
+#about { background:var(--bg); }
+.about-grid { display:grid; grid-template-columns:1fr 420px; gap:72px; align-items:start; }
+.about-text p { color:#4a5c52; line-height:1.95; font-size:1rem; margin-bottom:18px; }
+.about-highlights { background:white; border:1px solid var(--border); border-radius:12px; padding:28px; margin-top:8px; }
+.about-highlights h4 { font-size:0.75rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--green); margin-bottom:16px; }
+.highlight-item { display:flex; align-items:flex-start; gap:12px; margin-bottom:14px; }
+.highlight-dot { width:6px; height:6px; border-radius:50%; background:var(--green); margin-top:7px; flex-shrink:0; }
+.highlight-item p { font-size:0.88rem; color:var(--text); line-height:1.6; }
+.about-right { display:flex; flex-direction:column; gap:24px; }
+.about-photo { border-radius:12px; overflow:hidden; height:360px; position:relative; box-shadow:0 16px 48px rgba(45,125,90,0.12); }
+.about-photo img { width:100%; height:100%; object-fit:cover; }
+.img-placeholder { width:100%; height:100%; background:var(--green-pale); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; }
+.img-placeholder .icon { font-size:2rem; opacity:.35; }
+.img-placeholder p { color:var(--gray); font-size:0.75rem; text-align:center; line-height:1.7; padding:0 20px; }
+
+/* CERTS */
+.certs-row { display:flex; flex-direction:column; gap:10px; }
+.cert-item { display:flex; align-items:center; gap:12px; background:white; border:1px solid var(--border); border-radius:8px; padding:12px 16px; }
+.cert-icon { font-size:1.2rem; }
+.cert-text { font-size:0.82rem; color:var(--text); line-height:1.4; }
+.cert-text strong { display:block; font-weight:600; }
+.cert-text span { color:var(--gray); font-size:0.75rem; }
+
+/* VIDEO */
+.video-wrap { border-radius:12px; overflow:hidden; position:relative; padding-bottom:56.25%; height:0; background:var(--green-pale); box-shadow:0 8px 24px rgba(45,125,90,0.1); }
+.video-wrap iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:none; }
+.video-ph { position:absolute; top:0; left:0; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; background:var(--green-pale); }
+.play-btn { width:56px; height:56px; border-radius:50%; background:var(--green); display:flex; align-items:center; justify-content:center; box-shadow:0 8px 20px rgba(45,125,90,0.3); }
+.play-btn::after { content:'▶'; color:white; font-size:1.1rem; margin-left:3px; }
+.video-ph p { color:var(--gray); font-size:0.78rem; text-align:center; line-height:1.7; }
+
+/* CAREER */
+#career { background:white; }
+.career-grid { display:grid; grid-template-columns:1fr 340px; gap:64px; }
+.timeline { position:relative; padding-left:32px; }
+.timeline::before { content:''; position:absolute; left:0; top:10px; bottom:0; width:2px; background:var(--border); }
+.tl-item { position:relative; margin-bottom:44px; }
+.tl-item::before { content:''; position:absolute; left:-38px; top:8px; width:12px; height:12px; border-radius:50%; background:var(--green); border:3px solid white; box-shadow:0 0 0 2px var(--green); }
+.tl-period { font-size:0.72rem; font-weight:700; letter-spacing:1.5px; color:var(--green); text-transform:uppercase; margin-bottom:5px; }
+.tl-role { font-size:1.05rem; font-weight:700; color:var(--navy); margin-bottom:3px; }
+.tl-company { font-size:0.85rem; color:var(--gray); margin-bottom:12px; font-weight:500; }
+.tl-bullets { list-style:none; display:flex; flex-direction:column; gap:7px; }
+.tl-bullets li { font-size:0.87rem; color:#4a5c52; line-height:1.7; padding-left:16px; position:relative; }
+.tl-bullets li::before { content:'→'; position:absolute; left:0; color:var(--green); font-size:0.75rem; top:2px; }
+
+/* EDUCATION SIDEBAR */
+.edu-sidebar { display:flex; flex-direction:column; gap:20px; }
+.edu-card { background:var(--bg); border:1px solid var(--border); border-radius:12px; padding:24px; }
+.edu-card h4 { font-size:0.72rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--green); margin-bottom:16px; }
+.edu-item { margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid var(--border); }
+.edu-item:last-child { margin-bottom:0; padding-bottom:0; border-bottom:none; }
+.edu-school { font-weight:700; font-size:0.9rem; color:var(--navy); }
+.edu-degree { font-size:0.82rem; color:var(--gray); margin-top:3px; }
+.edu-year { font-size:0.72rem; color:var(--green); font-weight:600; margin-top:3px; }
+.skill-tags { display:flex; flex-wrap:wrap; gap:8px; }
+.skill-tag { background:var(--green-pale); color:var(--green); font-size:0.72rem; font-weight:600; padding:5px 12px; border-radius:20px; }
+
+/* BLOG */
+#blog { background:var(--bg); }
+.blog-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.blog-card { background:white; border-radius:12px; overflow:hidden; border:1px solid var(--border); transition:all .3s; }
+.blog-card:hover { box-shadow:0 12px 40px rgba(45,125,90,0.12); transform:translateY(-4px); }
+.blog-thumb { height:180px; background:var(--green-pale); position:relative; overflow:hidden; }
+.blog-thumb img { width:100%; height:100%; object-fit:cover; }
+.blog-ph { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; }
+.blog-ph .icon { font-size:1.8rem; opacity:.3; }
+.blog-ph p { color:var(--gray); font-size:0.72rem; text-align:center; }
+.blog-cat { position:absolute; top:12px; left:12px; background:var(--green); color:white; font-size:0.68rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:4px 10px; border-radius:4px; }
+.blog-body { padding:22px; }
+.blog-date { font-size:0.72rem; color:var(--gray); margin-bottom:8px; }
+.blog-title { font-weight:700; font-size:0.98rem; color:var(--navy); margin-bottom:10px; line-height:1.45; }
+.blog-excerpt { font-size:0.84rem; color:var(--gray); line-height:1.75; }
+.blog-more { text-align:center; margin-top:40px; }
+
+/* CONTACT */
+#contact { background:var(--navy); }
+#contact .sec-label { color:#7ec8a0; }
+#contact .sec-title { color:white; }
+#contact .sec-div { background:#7ec8a0; }
+.contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:64px; }
+.contact-info p { color:rgba(255,255,255,0.6); line-height:1.9; margin-bottom:32px; font-size:0.95rem; }
+.contact-links { display:flex; flex-direction:column; gap:14px; }
+.c-link { display:flex; align-items:center; gap:14px; color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.88rem; transition:color .3s; }
+.c-link:hover { color:var(--green-light); }
+.c-icon { width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; }
+.c-form { display:flex; flex-direction:column; gap:14px; }
+.c-form input, .c-form textarea { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); color:white; padding:14px 18px; border-radius:8px; font-family:'Be Vietnam Pro',sans-serif; font-size:0.88rem; outline:none; transition:border-color .3s; resize:none; }
+.c-form input::placeholder, .c-form textarea::placeholder { color:rgba(255,255,255,0.3); }
+.c-form input:focus, .c-form textarea:focus { border-color:var(--green-light); }
+
+footer { background:#0f1e17; text-align:center; padding:24px; }
+footer p { color:rgba(255,255,255,0.25); font-size:0.78rem; letter-spacing:1px; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <span class="nav-logo-en">MATTHEW TÔN THẤT BÁCH</span>
+    <span class="nav-logo-vn">Healthcare & Medical Education Leader</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">Về Tôi</a></li>
+    <li><a href="#career">Sự Nghiệp</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#contact" class="nav-cta">Liên Hệ</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-deco"></div>
+  <div class="hero-deco2"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-tag">Healthcare · Education · Aesthetic</div>
+      <h1>Matthew<br><em>Tôn Thất Bách</em></h1>
+      <div class="hero-vn">TÔN THẤT BÁCH · HCMC, VIETNAM</div>
+      <p class="hero-tagline">
+        <strong>Healthcare Education & Commercial Leader</strong> với hơn 8 năm kinh nghiệm tại các MNC dược phẩm, thẩm mỹ y tế, nha khoa và hệ sinh thái sức khỏe số.
+      </p>
+      <div class="hero-expertise">
+        <span class="tag-pill">HCP/KOL Engagement</span>
+        <span class="tag-pill">Medical Education</span>
+        <span class="tag-pill">Aesthetic Healthcare</span>
+        <span class="tag-pill">Scientific Communication</span>
+        <span class="tag-pill">Commercial Strategy</span>
+        <span class="tag-pill">Digital Health</span>
+      </div>
+      <div class="hero-btns">
+        <a href="#career" class="btn-primary">Xem Hành Trình</a>
+        <a href="#contact" class="btn-outline">Kết Nối Ngay</a>
+      </div>
+    </div>
+    <!-- 📸 ẢNH ĐẠI DIỆN -->
+    <div class="hero-photo">
+      <div class="photo-placeholder">
+        <div class="icon">🖼️</div>
+        <p>Ảnh đại diện<br>chuyên nghiệp của bạn<br><br>320 × 380px</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num">8+</div><div class="stat-label">Năm Kinh Nghiệm</div></div>
+  <div class="stat"><div class="stat-num">10,000+</div><div class="stat-label">HCPs Kết Nối</div></div>
+  <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Webinar & Workshop</div></div>
+  <div class="stat"><div class="stat-num">4</div><div class="stat-label">Hệ Thống Y Tế Lớn</div></div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="sec-inner">
+    <div class="about-grid">
+      <div>
+        <div class="sec-label">Về Tôi</div>
+        <h2 class="sec-title">Câu Chuyện Của Tôi</h2>
+        <div class="sec-div"></div>
+
+        <p>Tôi là <strong>Tôn Thất Bách (Matthew)</strong> — một chuyên gia với nền tảng Dược học từ Đại học Y Dược TP.HCM và MBA từ UEH, đang dẫn dắt hoạt động Medical Education & Commercial tại hệ sinh thái nha khoa Singapodent | IDDI Academy.</p>
+
+        <p>Hành trình của tôi bắt đầu từ vai trò Medical Representative tại Sanofi — nơi tôi xây dựng nền tảng về giao tiếp khoa học và hợp tác y tế — rồi trưởng thành qua các vị trí lãnh đạo tại Vinmec, MIC Medical, và hiện tại là COMO tại Singapodent.</p>
+
+        <p>Mục tiêu của tôi là <strong>kết nối thế giới học thuật y khoa với thực tiễn thương mại</strong> — tạo ra các chương trình đào tạo HCP chất lượng cao, xây dựng cộng đồng chuyên gia healthcare, và phát triển các khóa học trong lĩnh vực Aesthetic & Dental.</p>
+
+        <div class="about-highlights">
+          <h4>Chuyên Môn Cốt Lõi</h4>
+          <div class="highlight-item"><div class="highlight-dot"></div><p>Thiết kế & triển khai hệ sinh thái đào tạo chuyên nghiệp cho 10,000+ HCPs toàn quốc</p></div>
+          <div class="highlight-item"><div class="highlight-dot"></div><p>Xây dựng quan hệ KOL, học thuật với các đại học Y và bệnh viện lớn</p></div>
+          <div class="highlight-item"><div class="highlight-dot"></div><p>Tích hợp chiến lược Commercial + Medical Education để tối ưu doanh thu & uy tín thương hiệu</p></div>
+          <div class="highlight-item"><div class="highlight-dot"></div><p>Lãnh đạo đội nhóm đa chức năng: Digital, Content, Sales, Clinical Education</p></div>
+        </div>
+      </div>
+
+      <div class="about-right">
+        <!-- 📸 ẢNH ABOUT -->
+        <div class="about-photo">
+          <div class="img-placeholder">
+            <div class="icon">📸</div>
+            <p>Ảnh bạn đang diễn thuyết<br>hoặc tại workshop<br><br>500 × 360px</p>
+          </div>
+        </div>
+
+        <!-- 🎬 VIDEO GIỚI THIỆU -->
+        <div>
+          <p style="font-size:0.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:12px;">🎬 Video Giới Thiệu</p>
+          <div class="video-wrap">
+            <!-- Bỏ comment dòng dưới và thay VIDEO_ID bằng ID YouTube của bạn -->
+            <!-- <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe> -->
+            <div class="video-ph">
+              <div class="play-btn"></div>
+              <p>Thay bằng link YouTube của bạn<br><code style="font-size:0.68rem;color:var(--gray)">youtube.com/embed/VIDEO_ID</code></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CERTIFICATES -->
+        <div>
+          <p style="font-size:0.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:12px;">🎓 Chứng Chỉ</p>
+          <div class="certs-row">
+            <div class="cert-item"><div class="cert-icon">🦷</div><div class="cert-text"><strong>AI & Biomechanical Analysis in Modern Dentistry</strong><span>Kasetsart University, Thailand · 2026</span></div></div>
+            <div class="cert-item"><div class="cert-icon">📚</div><div class="cert-text"><strong>Pedagogical Certificate in Technical Education</strong><span>2022</span></div></div>
+            <div class="cert-item"><div class="cert-icon">📱</div><div class="cert-text"><strong>Digital Marketing Executive</strong><span>Vietnam Marcom · 2021</span></div></div>
+            <div class="cert-item"><div class="cert-icon">🌐</div><div class="cert-text"><strong>IELTS 6.5/9.0</strong><span>2017</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAREER -->
+<section id="career">
+  <div class="sec-inner">
+    <div class="career-grid">
+      <div>
+        <div class="sec-label">Kinh Nghiệm</div>
+        <h2 class="sec-title">Hành Trình Sự Nghiệp</h2>
+        <div class="sec-div"></div>
+        <div class="timeline">
+
+          <div class="tl-item">
+            <div class="tl-period">Tháng 3, 2024 – Nay</div>
+            <div class="tl-role">Chief Operation & Marketing Officer</div>
+            <div class="tl-company">Singapodent | IDDI Academy · TP. Hồ Chí Minh</div>
+            <ul class="tl-bullets">
+              <li>Thiết kế hệ sinh thái đào tạo chuyên nghiệp toàn quốc: 50+ webinar, 30+ workshop thực hành, 20+ chương trình quốc tế với KOL toàn cầu — nhắm đến 10,000+ nha sĩ.</li>
+              <li>Xây dựng quan hệ học thuật với ĐH Y Hà Nội, Phenikaa, UMP (Hải Phòng, Đà Nẵng, Cần Thơ, Phạm Ngọc Thạch) và BV Đà Nẵng.</li>
+              <li>Đại diện tổ chức tại VIDEC, HAIDEC, VAO — thuyết trình khoa học cho 700+ chuyên gia nha khoa.</li>
+              <li>Xây dựng & thực thi chiến lược kinh doanh 3 năm: đạt 100% target doanh số 2024–2025, tăng trưởng 30% YoY.</li>
+              <li>Dẫn dắt hệ sinh thái omni-channel (4 website, multi-platform, CRM 10,000+ HCPs) — đóng góp ~30% tổng doanh thu với chi phí marketing chỉ 2–5%.</li>
+              <li>Quản lý bộ phận Commercial 40+ người; tạo doanh thu lên đến 1 tỷ VND/sự kiện chuyên nghiệp lớn.</li>
+            </ul>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-period">2023 – 2024</div>
+            <div class="tl-role">Marketing Manager</div>
+            <div class="tl-company">MIC Medical Lab | Family Practice Clinic · TP. Hồ Chí Minh</div>
+            <ul class="tl-bullets">
+              <li>Dẫn dắt toàn bộ chiến lược marketing cho phòng khám đa khoa, phòng lab và dịch vụ y tế gia đình — tăng trưởng doanh thu 300% trong Q4/2023.</li>
+              <li>Tái định vị thương hiệu MIC từ phân khúc thấp lên phân khúc trung, nhân đôi giá trị giao dịch trung bình.</li>
+              <li>Quản lý team cross-functional: digital, content, CSKH và vendor bên ngoài.</li>
+            </ul>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-period">2022 – 2023</div>
+            <div class="tl-role">Digital Marketing Manager</div>
+            <div class="tl-company">Vinmec Healthcare System · Toàn Quốc</div>
+            <ul class="tl-bullets">
+              <li>Quản lý digital marketing toàn quốc cho 8 bệnh viện Vinmec — tập trung vào Phẫu thuật thẩm mỹ, Beauty Center, Tim mạch, Thần kinh, Ung bướu, Y học thể thao.</li>
+              <li>Tạo ra 1,954 qualified leads (chuyên khoa) — ngân sách 3B VND, CPL 158K VND; 7,539 leads bổ sung — ngân sách 2.7B VND, CPL 123K VND.</li>
+              <li>Phát triển nội dung patient-facing và chiến lược lead gen cho thủ thuật thẩm mỹ, phối hợp với surgical KOLs.</li>
+            </ul>
+          </div>
+
+          <div class="tl-item">
+            <div class="tl-period">2019 – 2022</div>
+            <div class="tl-role">Medical Representative</div>
+            <div class="tl-company">Sanofi Aventis Vietnam · TP. Hồ Chí Minh</div>
+            <ul class="tl-bullets">
+              <li>Quản lý HCP engagement cho danh mục tim mạch (Aprovel, Lovenox) trên mạng lưới bệnh viện và phòng khám.</li>
+              <li>Tổ chức 40+ sự kiện onsite (mini-symposium, hospital meetings) và 20+ chương trình HCP engagement kỹ thuật số/hybrid.</li>
+              <li>Doanh số trung bình 6 tỷ VND/năm; tăng trưởng 26% FY19/18 và 15% FY21/20. Aprovel +26%, Lovenox +30%.</li>
+              <li>Xây dựng nền tảng về MNC compliance, hợp tác y tế-thương mại và giao tiếp khoa học dựa trên bằng chứng.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- SIDEBAR: Học vấn + Kỹ năng -->
+      <div class="edu-sidebar">
+        <div class="edu-card">
+          <h4>🎓 Học Vấn</h4>
+          <div class="edu-item">
+            <div class="edu-school">UEH University</div>
+            <div class="edu-degree">Thạc sĩ Quản trị Kinh doanh (MBA)</div>
+            <div class="edu-year">2020 – 2022 · GPA 8.00/10</div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-school">Đại học Y Dược TP.HCM</div>
+            <div class="edu-degree">Dược sĩ Đại học</div>
+            <div class="edu-year">2013 – 2018 · GPA 7.59/10</div>
+          </div>
+        </div>
+
+        <div class="edu-card">
+          <h4>💡 Lĩnh Vực Chuyên Sâu</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">Medical Education</span>
+            <span class="skill-tag">KOL Management</span>
+            <span class="skill-tag">Aesthetic Healthcare</span>
+            <span class="skill-tag">Dental Cosmetics</span>
+            <span class="skill-tag">Digital Health</span>
+            <span class="skill-tag">Brand Strategy</span>
+            <span class="skill-tag">HCP Engagement</span>
+            <span class="skill-tag">Scientific Comm.</span>
+            <span class="skill-tag">Omni-channel</span>
+            <span class="skill-tag">CRM Systems</span>
+            <span class="skill-tag">Commercial Strategy</span>
+            <span class="skill-tag">Pharma MNC</span>
+          </div>
+        </div>
+
+        <div class="edu-card">
+          <h4>🎯 Mục Tiêu Nghề Nghiệp</h4>
+          <p style="font-size:0.88rem;color:var(--gray);line-height:1.8;">Hướng tới vai trò lãnh đạo <strong style="color:var(--navy)">Medical Education & Commercial</strong> trong các tổ chức MNC thuộc lĩnh vực <strong style="color:var(--navy)">Dermocosmetic & Aesthetic</strong>.</p>
+        </div>
+
+        <!-- 📸 ẢNH SỰ KIỆN -->
+        <div style="border-radius:12px;overflow:hidden;height:200px;position:relative;box-shadow:0 8px 24px rgba(45,125,90,0.1);">
+          <div class="img-placeholder" style="height:100%;background:var(--green-pale);">
+            <div class="icon">📸</div>
+            <p>Ảnh tại hội nghị / workshop<br>hoặc với KOLs<br>500 × 200px</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog">
+  <div class="sec-inner">
+    <div class="sec-label">Kiến Thức & Góc Nhìn</div>
+    <h2 class="sec-title">Blog & Bài Viết</h2>
+    <div class="sec-div"></div>
+    <div class="blog-grid">
+
+      <div class="blog-card">
+        <div class="blog-thumb">
+          <div class="blog-ph"><div class="icon">📷</div><p>Ảnh thumbnail bài viết</p></div>
+          <div class="blog-cat">Medical Education</div>
+        </div>
+        <div class="blog-body">
+          <div class="blog-date">Tháng XX, 20XX</div>
+          <h3 class="blog-title">[Tiêu đề bài viết về Medical Education]</h3>
+          <p class="blog-excerpt">[Tóm tắt ngắn — 2-3 câu về nội dung bài viết liên quan đến đào tạo HCP hoặc KOL management...]</p>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-thumb">
+          <div class="blog-ph"><div class="icon">📷</div><p>Ảnh thumbnail bài viết</p></div>
+          <div class="blog-cat">Aesthetic</div>
+        </div>
+        <div class="blog-body">
+          <div class="blog-date">Tháng XX, 20XX</div>
+          <h3 class="blog-title">[Tiêu đề về Aesthetic Healthcare / Dental]</h3>
+          <p class="blog-excerpt">[Tóm tắt ngắn về chủ đề thẩm mỹ y tế, xu hướng nha khoa thẩm mỹ...]</p>
+        </div>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-thumb">
+          <div class="blog-ph"><div class="icon">📷</div><p>Ảnh thumbnail bài viết</p></div>
+          <div class="blog-cat">Commercial</div>
+        </div>
+        <div class="blog-body">
+          <div class="blog-date">Tháng XX, 20XX</div>
+          <h3 class="blog-title">[Tiêu đề về Chiến lược thương mại Healthcare]</h3>
+          <p class="blog-excerpt">[Tóm tắt ngắn về commercial strategy, digital health ecosystem...]</p>
+        </div>
+      </div>
+
+    </div>
+    <div class="blog-more">
+      <a href="#" class="btn-primary">Xem Tất Cả Bài Viết</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="sec-inner">
+    <div class="sec-label">Kết Nối</div>
+    <h2 class="sec-title">Liên Hệ Với Tôi</h2>
+    <div class="sec-div"></div>
+    <div class="contact-grid">
+      <div>
+        <p>Tôi luôn sẵn sàng kết nối — dù là cơ hội hợp tác trong đào tạo y khoa, thẩm mỹ, hay đơn giản là một cuộc trò chuyện về Healthcare Education.</p>
+        <div class="contact-links">
+          <a href="mailto:bachsnf@gmail.com" class="c-link"><div class="c-icon">✉️</div><span>bachsnf@gmail.com</span></a>
+          <a href="tel:+84336378001" class="c-link"><div class="c-icon">📱</div><span>+84 336 378 001 (Zalo · WhatsApp)</span></a>
+          <a href="https://linkedin.com/in/" target="_blank" class="c-link"><div class="c-icon">💼</div><span>LinkedIn — Matthew Tôn Thất Bách</span></a>
+          <a href="#" class="c-link"><div class="c-icon">📍</div><span>Phường Tân Hưng, TP. Hồ Chí Minh</span></a>
+        </div>
+      </div>
+      <div class="c-form">
+        <input type="text" placeholder="Họ tên của bạn">
+        <input type="email" placeholder="Email của bạn">
+        <input type="text" placeholder="Chủ đề (VD: Hợp tác khóa học / Tư vấn)">
+        <textarea rows="5" placeholder="Nội dung tin nhắn..."></textarea>
+        <button class="btn-primary" style="border:none;cursor:pointer;font-family:'Be Vietnam Pro',sans-serif;">Gửi Tin Nhắn →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Matthew Tôn Thất Bách · Healthcare Education & Commercial Leader · TP. Hồ Chí Minh, Việt Nam</p>
+</footer>
+
+</body>
+</html>
